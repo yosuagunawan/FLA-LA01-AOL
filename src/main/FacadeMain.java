@@ -111,7 +111,8 @@ public class FacadeMain {
 	}
 	
 	public void update() {
-		System.out.println("update");
+		History history = History.getInstance();
+		history.update(userType);
 	}
 	
 	public void delete() {

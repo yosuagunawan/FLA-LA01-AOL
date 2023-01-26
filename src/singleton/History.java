@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import post.Post;
+import user.PostAdapter;
 
 public class History {
 	
@@ -31,6 +32,29 @@ public class History {
 			for(int i = 0; i<post.size(); i++) {
 				if(deleteByTitle.equals(post.get(i).getTitle())) {
 					post.remove(i);
+				}else {
+					continue;
+				}
+			}
+		}
+	}
+	
+	public void update(String userType) {
+		PostAdapter postadapter = new PostAdapter();
+		if(post.isEmpty()) {
+			System.out.println("Empty!!!");
+		}else{
+			String updateByTitle;
+			System.out.println("Post to update by Title: ");
+			updateByTitle = scan.nextLine();
+			for(Post p: post) {
+				if(updateByTitle.equals(p.getTitle())) {
+					String content = "";
+					do {
+						System.out.println("Content: ");
+						content = scan.nextLine();
+						p.setContent(content);;
+					}while(content.length()<1||content.length()>postadapter.wordmax(userType));
 				}else {
 					continue;
 				}
