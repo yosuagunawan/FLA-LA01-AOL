@@ -1,11 +1,13 @@
 package singleton;
 
+import java.util.Scanner;
 import java.util.Vector;
 
 import post.Post;
 
 public class History {
 	
+	Scanner scan = new Scanner(System.in);
 	private static History history;
 	Vector<Post> post = new Vector<>();
 	
@@ -17,6 +19,23 @@ public class History {
 	
 	public void add(Post posts) {
 		post.add(posts);
+	}
+	
+	public void remove() {
+		if(post.isEmpty()) {
+			System.out.println("Empty!!!");
+		}else{
+			String deleteByTitle;
+			System.out.println("Post to delete by Title: ");
+			deleteByTitle = scan.nextLine();
+			for(int i = 0; i<post.size(); i++) {
+				if(deleteByTitle.equals(post.get(i).getTitle())) {
+					post.remove(i);
+				}else {
+					continue;
+				}
+			}
+		}
 	}
 	
 	public void show() {

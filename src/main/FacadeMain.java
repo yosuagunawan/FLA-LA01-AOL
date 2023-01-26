@@ -115,17 +115,18 @@ public class FacadeMain {
 	}
 	
 	public void delete() {
-		System.out.println("delete");
+		History history = History.getInstance();
+		history.remove();;
 	}
 	
 	public void input() {
 		int choose = 0;
 		do {
 			view();
-			System.out.println("What do you wan to do " + name + " ? (^ o ^)");
-			System.out.println("1. Make Post");
-			System.out.println("2. Delete Post");
-			System.out.println("3. Update Post");
+			System.out.println("What do you want to do " + name + " ? (^ o ^)");
+			System.out.println("1. Make a Post");
+			System.out.println("2. Update a Post");
+			System.out.println("3. Delete a Post");
 			System.out.print(">> ");
 			choose = scan.nextInt();scan.nextLine();
 			switch (choose) {
