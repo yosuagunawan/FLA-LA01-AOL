@@ -35,7 +35,9 @@ public class History {
 			System.out.println("Icon : "+p.getTheme().getIcon());
 			System.out.println("Music : "+p.getTheme().getMusic());
 			System.out.println("========================================");
-			System.out.println("Picture : "+p.getPicture());
+			System.out.println("Picture Height : "+p.getPicture().getHeight());
+			System.out.println("Picture Width: "+p.getPicture().getWidth());
+			System.out.println("Picture DPI: "+p.getPicture().getDpi());
 			System.out.println();
 			System.out.println();
 			System.out.println();

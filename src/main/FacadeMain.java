@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import post.Post;
 import singleton.History;
+import template.JPG;
+import template.PNG;
 import user.PostAdapter;
 
 public class FacadeMain {
@@ -30,7 +32,6 @@ public class FacadeMain {
 		String title;
 		String content;
 		String theme = null;
-		String picture;
 		
 		PostAdapter postadapter = new PostAdapter();
 		
@@ -70,14 +71,38 @@ public class FacadeMain {
 				   !theme.equalsIgnoreCase("VIP"));
 		}
 		
+		String picture = "";
+		int height;
+		int width;
+		int dpi;
+		
 		do {
 			System.out.println("Picture: ");
 			picture = scan.nextLine();
-		}while(picture.length()<1||picture.length()>1000);
+		}while(!picture.equalsIgnoreCase("JPG")&&
+			   !picture.equalsIgnoreCase("PNG"));
+		do {
+			System.out.println("Height: ");
+			height = scan.nextInt();scan.nextLine();
+		}while(height < 100 || height > 10_000);
+		do {
+			System.out.println("Width: ");
+			width = scan.nextInt();scan.nextLine();
+		}while(width < 100 || width > 10_000);
+		do {
+			System.out.println("DPI: ");
+			dpi = scan.nextInt();scan.nextLine();
+		}while(dpi < 10 || dpi > 1_000);
 		
-		Post post = new Post(title,content,postadapter.themeCreate(theme),picture);
-		History history = History.getInstance();
-		history.add(post);
+		if(picture.equals("JPG")) {			
+			Post post = new Post(title,content,postadapter.themeCreate(theme),new JPG(height,width,dpi));
+			History history = History.getInstance();
+			history.add(post);
+		}else if(picture.equals("PNG")) {			
+			Post post = new Post(title,content,postadapter.themeCreate(theme),new PNG(height,width,dpi));
+			History history = History.getInstance();
+			history.add(post);
+		}
 	}
 	
 	public void view() {
@@ -85,18 +110,36 @@ public class FacadeMain {
 		history.show();
 	}
 	
+	public void update() {
+		System.out.println("update");
+	}
+	
+	public void delete() {
+		System.out.println("delete");
+	}
+	
 	public void input() {
-		String yesorno;
+		int choose = 0;
 		do {
 			view();
-			System.out.println("Do you want to create post " + name + "(^ o ^) [ Y | N ] (Case Insensetive)");
-			yesorno = scan.nextLine();
-			if(yesorno.equalsIgnoreCase("Y")) {
+			System.out.println("What do you wan to do " + name + " ? (^ o ^)");
+			System.out.println("1. Make Post");
+			System.out.println("2. Delete Post");
+			System.out.println("3. Update Post");
+			System.out.print(">> ");
+			choose = scan.nextInt();scan.nextLine();
+			switch (choose) {
+			case 1:
 				create();
-			}else {
+				break;
+			case 2:
+				update();
+				break;
+			case 3:
+				delete();
 				break;
 			}
-		}while(yesorno.equalsIgnoreCase("Y"));
+		}while(choose!=4);
 	}
 	
 	public void logOut() {
