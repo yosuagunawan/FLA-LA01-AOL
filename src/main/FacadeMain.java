@@ -79,8 +79,8 @@ public class FacadeMain {
 		do {
 			System.out.println("Picture: ");
 			picture = scan.nextLine();
-		}while(!picture.equalsIgnoreCase("JPG")&&
-			   !picture.equalsIgnoreCase("PNG"));
+		}while(!picture.equals("JPG")&&
+			   !picture.equals("PNG"));
 		do {
 			System.out.println("Height: ");
 			height = scan.nextInt();scan.nextLine();
@@ -117,7 +117,7 @@ public class FacadeMain {
 	
 	public void delete() {
 		History history = History.getInstance();
-		history.remove();;
+		history.remove();
 	}
 	
 	public void input() {
