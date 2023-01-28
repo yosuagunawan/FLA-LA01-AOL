@@ -15,7 +15,7 @@ public class FacadeMain {
 	String userType;
 
 	public void logIn() {
-		System.out.println("Hello Welcome to BinusBoard");
+		System.out.println("Hello Welcome to Momentgram");
 		System.out.println("===========Login===========");
 		System.out.print("Input Name: ");
 		name = scan.nextLine();
@@ -103,6 +103,7 @@ public class FacadeMain {
 			History history = History.getInstance();
 			history.add(post);
 		}
+		System.out.println("You have captured a moment");
 	}
 	
 	public void view() {
@@ -145,6 +146,6 @@ public class FacadeMain {
 	}
 	
 	public void logOut() {
-		System.out.println("Thank you for using BinusBoard, Have a great day (>_<)/");
+		System.out.println("Thank you for using Momentgram, Have a great day (>_<)/");
 	}
 }
